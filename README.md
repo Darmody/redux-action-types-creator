@@ -45,18 +45,40 @@ Or
         START: '@@APP/TODO/FETCH/REQUEST',
         SUCCESS: '@@APP/TODO/FETCH/SUCCESS',
         FAIL: '@@APP/TODO/FETCH/FAILURE',
+        ALL: [
+          '@@APP/TODO/FETCH/REQUEST',
+          '@@APP/TODO/FETCH/SUCCESS',
+          '@@APP/TODO/FETCH/FAILURE',
+        ]
       },
       USER: {
         FETCH: {
           START: '@@APP/TODO/USER/FETCH/REQUEST',
           SUCCESS: '@@APP/TODO/USER/FETCH/SUCCESS',
           FAIL: '@@APP/TODO/USER/FETCH/FAILURE',
+          ALL: [
+            '@@APP/TODO/USER/FETCH/REQUEST',
+            '@@APP/TODO/USER/FETCH/SUCCESS',
+            '@@APP/TODO/USER/FETCH/FAILURE',
+          ]
         },
         DELETE: '@@APP/TODO/USER/DELETE',
       }
     }
   }
 
+  */
+
+  // now you can access type like:
+
+  console.log(TODO_TYPES.TODO.CREATE) // '@@APP/TODO/CREATE'
+  console.log(TODO_TYPES.TODO.FETCH.ALL) // access all async types in easy way
+  /*
+    [
+      '@@APP/TODO/FETCH/REQUEST',
+      '@@APP/TODO/FETCH/SUCCESS',
+      '@@APP/TODO/FETCH/FAILURE',
+    ]
   */
 ```
 

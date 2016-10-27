@@ -30,12 +30,22 @@ test('should define types according to definition', (t) => {
         START: '@@TEST/APP/TODO/FETCH/START',
         SUCCESS: '@@TEST/APP/TODO/FETCH/SUCCESS',
         FAIL: '@@TEST/APP/TODO/FETCH/FAIL',
+        ALL: [
+          '@@TEST/APP/TODO/FETCH/START',
+          '@@TEST/APP/TODO/FETCH/SUCCESS',
+          '@@TEST/APP/TODO/FETCH/FAIL',
+        ],
       },
       USER: {
         FETCH: {
           START: '@@TEST/APP/TODO/USER/FETCH/START',
           SUCCESS: '@@TEST/APP/TODO/USER/FETCH/SUCCESS',
           FAIL: '@@TEST/APP/TODO/USER/FETCH/FAIL',
+          ALL: [
+            '@@TEST/APP/TODO/USER/FETCH/START',
+            '@@TEST/APP/TODO/USER/FETCH/SUCCESS',
+            '@@TEST/APP/TODO/USER/FETCH/FAIL',
+          ],
         },
         DELETE: '@@TEST/APP/TODO/USER/DELETE',
       }

@@ -3,6 +3,7 @@ import merge from 'lodash/merge'
 import {
   SYNC,
   ASYNC,
+  ALL_IN_ASYNC,
   ASYNC_TYPES_DEFAULT_SUFFIX
 } from './constants'
 
@@ -20,14 +21,20 @@ export default (namespace, options = {}) => (definition) => {
 
   const createActionType = (typeDefine, path = '') => {
     const constructSyncType = _.assocPath(_.__, `${APP_NAMESPACE}${path}`, {})
-    const constructAsyncType = (objectPath) => _.map(
-      (action) => _.assocPath(
+
+    const constructAsyncType = (objectPath) => _.compose(
+      _.concat(_, _.assocPath(
+        [...objectPath, ALL_IN_ASYNC],
+        _.map(suffix => `${APP_NAMESPACE}${path}/${suffix}`)(ASYNC_TYPES_SUFFIX),
+        {},
+      )),
+      _.map((action) => _.assocPath(
         [...objectPath, action],
         `${APP_NAMESPACE}${path}/${action}`,
         {},
-      ),
-      ASYNC_TYPES_SUFFIX,
-    )
+      )),
+    )(ASYNC_TYPES_SUFFIX)
+
     const generateTypeForKeys = _.map(key => createActionType(typeDefine[key], `${path}/${key}`))
 
     const generateSyncType = _.compose(
